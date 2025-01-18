@@ -1,0 +1,39 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Товари</title>
+    <link rel="stylesheet" th:href="@{/css/style.css}" />
+</head>
+<body>
+    <div class="container">
+        <h1>Товари</h1>
+        <a href="/products/add" class="button">Додати товар</a>
+        <table>
+            <thead>
+                <tr>
+                    <th>Номер у списку</th>
+                    <th>Товар</th>
+                    <th>Категорія</th>
+                    <th>Ціна</th>
+                    <th>Магазин</th>
+                    <th>Дії</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr th:each="product : ${products}">
+                    <td th:text="${product.id}"></td>
+                    <td th:text="${product.productName}"></td>
+                    <td th:text="${product.category}"></td>
+                    <td th:text="${product.price}"></td>
+                    <td th:text="${product.shop.shopName}"></td>
+                    <td class="actions">
+                        <a th:href="@{/products/edit/{id}(id=${product.id})}" class="button edit">Редагувати</a>
+                        <a th:href="@{/products/delete/{id}(id=${product.id})}" class="button delete">Видалити</a>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <a href="/home" class="button back">Повернутися до головної сторінки</a>
+    </div>
+</body>
+</html>
